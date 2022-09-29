@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appply For Become A Doctor</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/CSS/all.CSS' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+    <style>
+        .nav-bar-menu>ul>li {
+            margin-left: 70px;
+        }
+
+        .nav-bar-menu>ul>li:hover {
+            border-bottom: 1px solid white;
+        }
+
+        .nav-bar-menu>ul>li:active {
+            border-bottom: 1px solid black;
+
+        }
+
+        .footer-class>ul>li {
+            display: inline;
+            color: rgb(129, 129, 129);
+            margin: 30px;
+        }
+        .status-form-frame {
+            text-align: center;
+            margin: auto;
+        }
+        .form {
+            border-radius: 5px;
+            margin-top: 19px;
+        }
+
+        @media screen and (max-width: 479px) {
+            .title {
+                font-size: 20px;
+            }
+        }
+        .status-form-frame {
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+
+    <!-- navbar -->
+    {% if user.is_authenticated %}
+ 
+    <!-- navbar close -->
+
+
+
+
+
+    <div style="background-color: white;" class="body-style">
+
+        <div style="background-color: white;border:none;" class="status-body">
+
+            <p style="color: black;font-size: 29px;">Submit Your CV</p>
+            <hr>
+
+        </div>
+        <div style="width: 90%;height: auto;margin: auto;">
+            <div style="width: 80%;height: auto;margin: auto;">
+
+                <div style="text-align:center;width: 100%;margin: auto;">
+                    {% for message in messages %}
+
+
+                    <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                        <strong>Hey {{ user.first_name }} ! </strong>{{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+
+                    {% endfor %}
+                </div>
+
+
+                <form action="{% url 'all_cv_form' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="status-form-frame">
+                        <input class="form" value="{{ user.username }}" name="username">
+                        <br>
+                        <br>
+                        <input class="form"  value="{{ user.email }}" name="email">
+                        <br>
+                        <br>
+                        <input class="form"  value="{{ user.get_full_name }}" name="name">
+                        <br>
+                        <br>
+                        <input class="form"   name="address" placeholder="Address">
+                        <br>
+                        <br>
+                        <input class="form"   name="university" placeholder="University">
+                        <br>
+                        <br>
+                        <input class="form"   name="cgpa" placeholder="CGPA">
+                        <br>
+                        <br>
+                        <input class="form"   name="skill" placeholder="SKILL">
+                        <br>
+                        <br>
+                        <!-- </div>
+                          <div style="text-align:center;"> -->
+                        <button type="submit"
+                          style="height:29px;color:white;background-color:#ff4f57;border-radius:20px;margin-top:5px;width:70px;border:#ff4f57;margin-bottom: 5px;">Post</button>
+                      </div>
+
+                </form>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    {% else %}
+
+   
+
+
+    {% endif %}
+
+
+
+    <footer class="footer">
+
+    </footer>
+
+
+    <script src="{% static 'homepage.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+</body>
+
+
+</html>
